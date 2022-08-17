@@ -151,8 +151,11 @@ public class MemberController {
 			member.setSalt(UUID.randomUUID().toString().replace("-", ""));
 			member.setPassword(membershipSecurityService.encryptPassword(member.getPassword(), member.getSalt()));
 			
+			// Save into mobile db section
 			newMember = memberService.save(member);
 			printPrettyJson(newMember);
+			
+			// Save into Gross db section
 		}
 		
 		// 2) Check whether existing member using hard card
